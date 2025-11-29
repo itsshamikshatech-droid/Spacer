@@ -1,0 +1,292 @@
+
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user in the Spaser Hub application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the User entity."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "User's phone number."
+        },
+        "role": {
+          "type": "string",
+          "description": "User's role (Space Seller, Service Provider, Space Buyer)."
+        },
+        "profilePicture": {
+          "type": "string",
+          "description": "URL of the user's profile picture.",
+          "format": "uri"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "description": "The verification status of the user's profile.",
+          "enum": ["unverified", "pending_verification", "verified", "rejected"]
+        }
+      },
+      "required": [
+        "id",
+        "email"
+      ]
+    },
+    "Space": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Space",
+      "type": "object",
+      "description": "Represents a space listed on the Spaser Hub application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Space entity."
+        },
+        "sellerId": {
+          "type": "string",
+          "description": "Reference to User (Space Seller). (Relationship: User 1:N Space)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the space."
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the space (e.g., address)."
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Latitude coordinate of the space."
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Longitude coordinate of the space."
+        },
+        "capacity": {
+          "type": "number",
+          "description": "Maximum capacity of the space."
+        },
+        "facilities": {
+          "type": "array",
+          "description": "List of facilities available in the space.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "price": {
+          "type": "number",
+          "description": "Price of the space per unit time."
+        },
+        "photos": {
+          "type": "array",
+          "description": "URLs of the space's photos.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "purpose": {
+            "type": "string",
+            "description": "The intended use for the space (e.g., meeting, event, photoshoot).",
+            "enum": ["Meeting", "Event", "Photoshoot", "Workshop", "Rooftop"]
+        }
+      },
+      "required": [
+        "id",
+        "sellerId",
+        "name",
+        "location",
+        "latitude",
+        "longitude",
+        "capacity",
+        "price"
+      ]
+    },
+    "ServiceProvider": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ServiceProvider",
+      "type": "object",
+      "description": "Represents a service provider registered on the Spaser Hub application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the ServiceProvider entity."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:1 ServiceProvider)"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of service provided (Wi-Fi, catering, cleaning, AV Tech, etc.)."
+        },
+        "charges": {
+          "type": "number",
+          "description": "Charges for the service."
+        },
+        "availability": {
+          "type": "string",
+          "description": "Availability of the service provider (e.g., days and times)."
+        },
+        "areaOfOperation": {
+          "type": "string",
+          "description": "Area of operation for the service provider (e.g., city, region)."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "category",
+        "charges",
+        "availability",
+        "areaOfOperation"
+      ]
+    },
+    "Booking": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Booking",
+      "type": "object",
+      "description": "Represents a booking made by a Space Buyer.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Booking entity."
+        },
+        "spaceId": {
+          "type": "string",
+          "description": "Reference to Space. (Relationship: Space 1:N Booking)"
+        },
+        "buyerId": {
+          "type": "string",
+          "description": "Reference to User (Space Buyer). (Relationship: User 1:N Booking)"
+        },
+        "bookingDate": {
+          "type": "string",
+          "description": "Date of the booking.",
+          "format": "date-time"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the booking period.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the booking period.",
+          "format": "date-time"
+        },
+        "totalPrice": {
+          "type": "number",
+          "description": "Total price of the booking."
+        },
+        "serviceProviderIds": {
+          "type": "array",
+          "description": "References to ServiceProviders. (Relationship: ServiceProvider N:N Booking)",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "id",
+        "spaceId",
+        "buyerId",
+        "bookingDate",
+        "startDate",
+        "endDate",
+        "totalPrice"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous",
+      "google.com"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profiles. The 'role' field within each document dictates user privileges within the application.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier for the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/spaces/{spaceId}",
+        "definition": {
+          "entityName": "Space",
+          "schema": {
+            "$ref": "#/backend/entities/Space"
+          },
+          "description": "Stores space listings. Includes 'sellerId' for direct access control based on space ownership. This achieves authorization independence.",
+          "params": [
+            {
+              "name": "spaceId",
+              "description": "The unique identifier for the space listing."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/serviceProviders/{serviceProviderId}",
+        "definition": {
+          "entityName": "ServiceProvider",
+          "schema": {
+            "$ref": "#/backend/entities/ServiceProvider"
+          },
+          "description": "Stores service provider profiles.",
+          "params": [
+            {
+              "name": "serviceProviderId",
+              "description": "The unique identifier for the service provider."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/bookings/{bookingId}",
+        "definition": {
+          "entityName": "Booking",
+          "schema": {
+            "$ref": "#/backend/entities/Booking"
+          },
+          "description": "Stores booking information. Includes 'buyerId' and 'spaceId' for querying bookings by user or space.",
+          "params": [
+            {
+              "name": "bookingId",
+              "description": "The unique identifier for the booking."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore data structure is designed to support the Spaser Hub application's features, including user roles, space listings, service provider registration, booking, and AI recommendations. The structure emphasizes authorization independence and QAPs through denormalization and structural segregation.  Specifically, the `spaces` collection includes the `sellerId` field, allowing direct access control based on the space owner. Similarly, bookings include `buyerId` and `spaceId`, facilitating secure queries for a user's bookings or bookings for a specific space.  Role-based access control is handled directly via the `users` collection, with the 'role' field determining access rights within the application. This approach avoids complex hierarchical `get()` calls in security rules, ensuring atomic operations and simplifying debugging. Segregation of data based on ownership (e.g., spaces owned by a seller under `/users/{sellerId}/spaces/{spaceId}`) further enhances security and simplifies rules."
+  }
+}

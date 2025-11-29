@@ -1,0 +1,64 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-background",
+      "description": "A beautiful purple and blue galaxy nebula.",
+      "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzcGFjZXxlbnwwfHx8fDE3MjE4MzY3Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "outer space"
+    },
+    {
+      "id": "auth-background",
+      "description": "An astronaut floating in the vastness of space, with Earth reflected in their helmet.",
+      "imageUrl": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxhc3Ryb25hdXR8ZW58MHx8fHwxNzIyNTQzMjU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "astronaut space"
+    },
+    {
+      "id": "dashboard-background",
+      "description": "A sleek and modern office interior with geometric patterns and a minimalist aesthetic.",
+      "imageUrl": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHx0ZWNob25vbG9neSUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3MjI1NTQ0MTZ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "tech workspace"
+    },
+    {
+      "id": "space-1",
+      "description": "A modern, bright conference room with a large wooden table and city view.",
+      "imageUrl": "https://images.unsplash.com/photo-1521737852577-6848d81b952a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtb2Rlcm4lMjBtZWV0aW5nJTIwcm9vbXxlbnwwfHx8fDE3MjI3NzUwNDd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern meeting room"
+    },
+    {
+      "id": "space-2",
+      "description": "A creative studio space with brick walls, high ceilings, and ample natural light.",
+      "imageUrl": "https://images.unsplash.com/photo-1549488344-cbb6c34cf08b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMHN0dWRpb3xlbnwwfHx8fDE3MjI3NzUxMDJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "creative studio"
+    },
+    {
+      "id": "space-3",
+      "description": "A professional boardroom with a long table and comfortable chairs, ready for a presentation.",
+      "imageUrl": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxib2FyZHJvb218ZW58MHx8fHwxNzIyNzc1MTM3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "boardroom"
+    },
+    {
+      "id": "space-4",
+      "description": "A large, elegant banquet hall set up for a corporate event or wedding.",
+      "imageUrl": "https://images.unsplash.com/photo-1532560879233-22681121d596?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxiYW5xdWV0JTIwaGFsbHxlbnwwfHx8fDE3MjI3NzUxNzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "banquet hall"
+    },
+    {
+      "id": "space-5",
+      "description": "A chic rooftop terrace with seating, overlooking a city skyline at dusk.",
+      "imageUrl": "https://images.unsplash.com/photo-1588824168153-61a0b35111b2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjaXR5JTIwcm9vZnRvcHxlbnwwfHx8fDE3MjI3NzUyMTJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "rooftop terrace"
+    },
+    {
+      "id": "featured-2",
+      "description": "Cozy and professional conference room with a large table and screen.",
+      "imageUrl": "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjb25mZXJlbmNlJTIwcm9vbXxlbnwwfHx8fDE3NjM1NzM1NzJ8MA&ixlib.rb-4.1.0&q=80&w=1080",
+      "imageHint": "conference room"
+    },
+    {
+      "id": "featured-3",
+      "description": "Bright and sunny art studio with high ceilings and easels.",
+      "imageUrl": "https://images.unsplash.com/photo-1625765361596-d425d3c3eb96?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxhcnQlMjBzdHVkaW98ZW58MHx8fHwxNzYzNTAxMzk0fDA&ixlibrb-4.1.0&q=80&w=1080",
+      "imageHint": "art studio"
+    }
+  ]
+}

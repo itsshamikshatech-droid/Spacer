@@ -1,0 +1,30 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+# Specifies the node version to use when running your app.
+runtime: nodejs20
+# Tells App Hosting how to build and run your app.
+# The following command is the default for Next.js apps.
+# You can replace this with a custom command if needed.
+build:
+  command: "npm run build"
+# Serve the Next.js bundle located in the .next/standalone directory.
+# This is the default for Next.js apps.
+serve:
+  command: "node .next/standalone/server.js"
+
+# The runConfig specifies the resources to provision for your app's backend.
+runConfig:
+  # The following values are defaults and can be omitted.
+  cpu: 0.5
+  memoryMiB: 512
+  # Increase this value if you'd like to automatically spin up
+  # more instances in response to increased traffic.
+  maxInstances: 1
+
+# Environment variables are accessible within your app's code.
+# The PORT variable is special and tells your server which port to listen on.
+# Other environment variables can be added and accessed with `process.env`.
+env:
+  - variable: PORT
+    value: "8080" # The default port for Next.js is 3000, but App Hosting requires 8080.

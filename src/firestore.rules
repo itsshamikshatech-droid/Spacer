@@ -1,0 +1,69 @@
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // Spaces (publicly viewable)
+    match /spaces/{spaceId} {
+      allow read: if true; // buyers & sellers can view spaces
+      allow write: if isSignedIn(); // only authenticated sellers add/edit spaces
+    }
+
+    // Bookings (protected)
+    match /bookings/{bookingId} {
+      allow list: if isSignedIn();
+      allow read: if isSignedIn() && (
+        isOwner(resource.data.buyerId) ||
+        isOwner(resource.data.sellerId)
+      );
+      allow create: if isSignedIn();
+      allow update: if isSignedIn() && (
+        isOwner(resource.data.buyerId) ||
+        isOwner(resource.data.sellerId)
+      );
+      allow delete: if isSignedIn() && isOwner(resource.data.buyerId);
+    }
+
+    // Notifications
+    match /notifications/{notifId} {
+      allow read: if isSignedIn() && isOwner(resource.data.userId);
+      allow create: if isSignedIn();
+      allow update, delete: if isSignedIn() && isOwner(resource.data.userId);
+    }
+    
+    // Provider Profiles (protected, only owner can write)
+    match /providerProfiles/{userId} {
+        allow read: if isSignedIn();
+        allow create: if isOwner(userId);
+        allow update, delete: if isOwner(userId);
+    }
+
+    // Services (publicly viewable, only owner can write)
+    match /services/{serviceId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && isOwner(request.resource.data.providerId);
+      allow update, delete: if isSignedIn() && isOwner(resource.data.providerId);
+    }
+
+    // Hire Requests (protected between buyer and provider)
+    match /hireRequests/{reqId} {
+      allow read, write: if isSignedIn() &&
+        (isOwner(resource.data.buyerId) ||
+         isOwner(resource.data.providerId));
+      allow create: if isSignedIn();
+    }
+
+    // Users collection
+    match /users/{uid} {
+      allow read, write: if isSignedIn() && isOwner(uid);
+    }
+  }
+}
